@@ -1,0 +1,175 @@
+/*onscreen camera controls*/
+
+size = 64px
+
+.landing #control_toolbar
+    display: none
+
+#control_toolbar
+    z-index controls-bar-z
+    position absolute
+    left -webkit-calc(50% - 8px)
+    left calc(50% - 8px)
+    top 30%
+    width size * 2
+    //overflow hidden
+    display inline
+    margin-left 0 - size * 0.5
+    opacity 1
+    -transform scale(0.3)
+    padding-left 4px
+    background panel-color
+    border3d 0.3
+    box-shadow soft-shadow
+    border-radius r*6
+    
+    &:hover
+        opacity 1
+
+    &.hidden
+        opacity 0
+        pointer-events none
+        //-transform scale(0)
+        
+    &.blocked *
+        opacity 1
+    
+    .controller
+        font-size 50px
+        color white
+        text-align center
+        margin 0 0 -4px -4px //to avoid inline-block default margin
+        padding 0
+        display inline-block
+        width size * 2
+        height size * 2
+        transition-props 0.2s (opacity transform)
+        -transform scale(1.2)
+        &:hover
+            -transform scale(1.5)
+        
+    .tutorial-balloon .body
+        -transform scale(3)
+        //&[title]:hover:after
+            //content attr(title)
+            //padding 4px 8px
+            //color #333
+            //position absolute
+            //left 0
+            //top 100%
+            //z-index 2000000000
+            //min-height 20px
+            //white-space nowrap
+    
+    .xbtn
+        width 64px
+        height 64px
+        position absolute
+        right -32px
+        top -32px
+        cursor pointer
+        z-index 2
+        
+#handle
+    height 70px !important
+    transition-props 0.2s (opacity)
+    cursor move
+    -transform scale(1)
+    &:hover
+        -transform scale(1)
+
+#pan
+    background url("pan2.png") center no-repeat
+#rotate
+    background url("rotate2.png") center no-repeat
+    height 100px !important
+    margin-top 28px !important
+    background-position-y 10px
+#zoom
+    background url("zoom.png") center no-repeat
+#tilt
+    background url("tilt.png") center no-repeat
+    &.hidden
+        opacity 0
+        pointer-events none
+#home
+    background url(home.png) center no-repeat
+#pointer
+    border-radius 100px
+    width 8px
+    height 8px
+    background rgb(200,200,200)
+    position absolute
+    left 50%
+    top 50%
+    margin -4px 0 0 -4px
+    box-shadow small-shadow
+    border3d 0.3
+    opacity 1
+    opacity  0
+
+#pan_action
+    position absolute
+    width 64px
+    height 64px
+    left 50%
+    top 50%
+    margin -32px 0 0 -32px
+    background url("pan_action.png") center no-repeat
+    -transform scale(0.6)
+    transition-props 0.2s (transform)
+    &.hidden
+        -transform scale(0)
+
+#zoom_action
+    position absolute
+    left 50%
+    top 50%
+    width 20px
+    height 220px
+    margin -110px 0 0 -10px
+    //border solid rgba(255,255,255,0.3) 1px
+    transition-props 0.2s (transform)
+    -transform scale(1)
+    &.hidden
+        -transform scale(0)
+
+#zoom_slider
+    position relative
+    left 50%
+    top 50%
+    width 20px
+    height 40px
+    margin -20px 0 0 -10px
+    //background url("resize_icon.svg") center no-repeat highlight-color
+    //background-size 5px
+    background highlight-color
+    border3d 0.5
+    border-radius r
+    box-shadow small-shadow
+
+#zoom_plus
+    color white
+    text-shadow 0px 1px 0px rgba(0,0,0, 0)
+    font-weight 700
+    text-align center
+    position absolute
+    left 50%
+    top 0%
+    width 20px
+    height 20px
+    margin -10px 0 0 -10px
+    font-size 30px
+    
+#zoom_minus
+    color white
+    shadow 0px 1px 0px rgba(0,0,0,0)
+    font-weight 700
+    text-align center
+    position absolute
+    left 50%
+    top 100%
+    width 20px
+    height 20px
+    margin -30px 0 0 -10px
+    font-size 30px

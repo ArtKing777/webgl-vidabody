@@ -1,0 +1,48 @@
+
+.accordion
+    list-style none
+    padding 0
+    margin 0 0
+    height 100%
+    pointer-events none
+    transition-props 0.5s (width background)
+
+    & > li
+        color #ffffff
+        text-shadow text-shadow
+        font-size 20px
+        text-align Left
+        position relative
+        top 0
+        background-color sub-menu-color
+        border3d(0.2, true, true, 1px, false)
+
+        
+        > .sub-menu
+            width 100%
+            height auto
+            max-height 0px
+            transition-props 0.5s (max-height background)
+            overflow hidden
+            font-size 14px
+            pointer-events all
+            
+            & .scroll
+                overflow-y auto
+                overflow-x auto
+            & > li
+                font-size 14px
+            
+        &.expanded .sub-menu
+            max-height 60vh
+
+
+
+#snapshots ul
+    display none
+
+#snapshots.expanded ul
+    display block
+
+#snapshots .expand-accordion
+    background-image url("temp_snapshot.png") !important

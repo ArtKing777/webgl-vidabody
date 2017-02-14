@@ -1,0 +1,120 @@
+
+
+.quiz_box
+    font-size 30px
+    color white
+    background panel-color
+    box-shadow 10px 10px 40px rgba(0,0,0,0.3)
+    border-radius r * 2
+    border-top-right-radius 0
+    padding 20px
+    text-shadow text-shadow
+    pointer-events none
+    position absolute
+    top 32px
+    right 0
+    text-align center
+    word-wrap break-word
+
+    li
+        list-style-type none
+        font-size 25px
+        margin 10px 0
+        border-radius r * 2
+        border-width 2px
+        position relative
+        //word-wrap break-word
+        height auto
+
+    .checkbox
+        pointer-events all
+        width 20px
+        height 20px
+        
+    .text-input
+        //list-style-type none 
+        font-size 20px
+        margin 10px 0
+        pointer-events all
+        border-radius r * 2
+        border-width 2px
+        //height auto
+        width 100%
+        border3d(0.5, true, true, 2px, true)
+        background text-input-color
+        //word-wrap: break-word
+        padding 15px
+
+        
+    .panel-button
+        background highlight-color
+        width 100%
+        font-size 25px
+        border-radius r * 2
+        padding-top 16px
+
+
+.choose_answer_quiz
+    padding 10px
+    width 400px
+
+    li.fail
+        background red !important
+        opacity 0.2
+        pointer-events none
+    
+    li 
+        .panel-button 
+            margin 10px
+            min-width 50%
+            padding 10px
+            display inline
+            text-size 15px
+            
+            &.disabled
+                opacity 0.5
+                pointer-events none
+            &.answer
+                width 100%
+    #q
+        width 70%
+        
+    li .text-input
+        width 80%
+        position relative
+        left 0
+        
+    .checkbox
+        margin 20px
+
+.question_quiz
+    padding 10px
+    pointer-events all
+    width 600px
+    display flex
+        
+    .text-input
+        margin-right 10px
+        width 80%
+        
+    .panel-button
+        width 20%
+        font-size 25px
+        border-radius r * 2
+        padding-top 16px
+        
+        
+
+.popup_arrow
+    width 0
+    height 0
+    border-style solid
+    border-width 0 0 32px 32px
+    border-color  transparent transparent panel-color transparent
+    position absolute
+    top -32px
+    right 0
+    
+
+    
+    

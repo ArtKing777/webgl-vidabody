@@ -1,0 +1,194 @@
+
+#close_login_panel.expanded
+    z-index 99
+    position fixed
+    width 100vw
+    height 100vh
+    top 0
+    left 0
+    
+#login_panel
+    z-index 100
+    position fixed
+    width 150px
+    height auto
+    max-height 60px
+    overflow hidden
+    border-radius r
+    top 20px
+    right 40px
+    background highlight-color
+    padding-top 10px
+    box-shadow soft-shadow
+    border3d(0.3)
+    transition-props 0.5s (right top max-height width background)
+    
+    label
+        font-size 20px
+    a
+        font-size 20px
+
+    .text-input
+        display block
+        margin 0 20px 20px 20px
+        border-radius r
+        border3d(0.3, true, true, 1px, true)
+        height 50px
+        background text-input-color
+        width (100% - 10px)
+        font-size 20px
+
+    li
+        background none
+        border none
+        transition-props 0.5s background
+        
+        .expand-accordion
+            background none
+            border none
+            box-shadow none
+            font-size 20px
+            white-space nowrap
+            overflow hidden
+            opacity 1
+            transition-props 0.5s (font-size height opacity)
+            height 50px
+        
+        .sub-menu
+            overflow hidden
+            height auto
+            max-height 1px
+            opacity 0
+            transition-props 0.5s (max-height opacity)
+            
+        
+            .panel-button
+                background hbc
+                position relative
+                width 90%
+                margin 0 20px 20px 20px
+                font-size 25px
+                
+                &:hover
+                    background lighten(hbc, 30%)
+                    box-shadow hard-shadow
+            
+            
+
+        &.expanded .sub-menu
+            max-height 100vh
+            opacity 1
+            
+    &:hover
+        background lighten(highlight-color, 40%)
+        
+    &.expanded
+        border-radius r * 2
+        padding-top 0
+        top 20%
+        width 400px
+        max-height 600px
+        right -webkit-calc(50% - 200px)
+        right calc(50% - 200px)
+        background bc
+        #register .expand-accordion
+            padding-top 8px
+        #login .expand-accordion
+            padding-top 8px
+        
+        li
+            .expand-accordion
+                font-size 20px 
+                height 40px
+                opacity 0.5
+            
+            &.expanded 
+                background hbc
+                box-shadow soft-shadow
+                border3d(0.2)
+                
+                & .expand-accordion
+                    opacity 1
+                    font-size 30px 
+                    height 60px
+
+    &.disabled
+        top -100px
+
+#forgot_form, #login_form
+    overflow hidden
+    height auto
+    max-height 500px
+    opacity 1
+    transition-props 0.5s (max-height opacity)
+
+
+    &.hidden
+        max-height 0
+        opacity 0
+
+#logged_in_panel
+    position absolute
+    top 10px
+    right 10px
+    font-size 18px
+    transition-props 0.5s top
+    color rgb(190,190,190)
+    text-shadow text-shadow
+    z-index 3
+    
+    & #user_name 
+        color #414141
+        margin 0 10px
+        color white
+        text-shadow 
+        
+    & #logout
+        color highlight-color
+        margin 0 10px
+        cursor pointer
+        text-shadow text-shadow
+        
+    &.disabled
+        top -100px
+
+#register_error, #login_error
+    margin 0px 15px 15px 15px
+    display none
+    background rgb(139, 78, 78)
+    padding 8px
+
+#register_success
+    margin 5px 15px 15px 15px
+    display none
+    background #4E9158
+    padding 8px
+
+#stay_logged_in
+    margin 0 0 15px 15px
+
+#forgot
+    margin-left 15px
+
+#secondary_login_button
+
+    position absolute
+    top 40px
+    text-align left
+    right 210px
+    font-size 20px
+    color highlight-color
+    transition-props 0.5s (right top opacity)
+    cursor pointer
+    text-shadow text-shadow
+
+    &.hidden
+        opacity 0
+        top 50%
+        right 50%
+    &.disabled
+        top -100px
+    
+    &:hover
+        color white
+    

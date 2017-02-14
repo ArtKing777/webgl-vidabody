@@ -1,0 +1,133 @@
+
+#organ-tree-container
+    overflow-y auto
+
+#systems.expanded > #organ-tree-container
+    padding-bottom 5px
+    
+li.not-in-search-results
+    display none
+li.in-search-results
+    display box
+    
+
+.dragonfly-tree
+    color white
+    font-size 12px
+    margin-left -100px
+    text-indent 100px
+    padding 10px 0 0 16px
+
+    & li.hide
+        color rgba(255,255,255,0.5)
+
+        & label
+            color white !important
+            opacity 0.5 !important
+        
+    & ul
+        text-indent 100px
+        padding 0 0 0 10px
+        margin 0
+        overflow hidden
+        transition-props 0.5s height
+        box-shadow inset-soft-shadow
+        background sub-menu-color
+        & li
+            list-style-type none
+            top 20px
+            padding 5px 0 5px 0
+            
+        &.closed
+            height 0 !important
+            
+    
+    & li
+        height auto //resets style from accordions
+        list-style-type none
+        min-height 28px
+        margin-top 2px
+        
+        
+    & label
+        cursor pointer
+        display inline-box
+        padding-right 15px
+
+
+        &.colapsable
+            background: url(colapsable.png) 100% 50%  no-repeat
+        
+        &.expandible
+            background: url(expandible.png) 100% 50% no-repeat
+            
+        
+        
+    & .checkbox
+        display inline-block
+        width 32px
+        height 16px
+        background url(no-visible.png) center -2px no-repeat
+        background-size 25px
+        
+    
+    & .checkbox-half
+        background url(semi-visible.png) center -2px no-repeat
+        background-size 25px
+    & .checkbox-full
+        background url(visible.png) center -2px no-repeat
+        background-size 25px
+    
+
+[data-visiblename="Unclassified"]
+    display none
+
+    
+    
+/*
+
+label root
+ul
+  li hi
+  li ho
+  li
+    label subtree
+    ul
+      li one
+      li two
+  li
+    label subtree
+    ul
+      li one
+      li
+        label subsubtree
+        ul
+          li one
+          li two
+  li
+    label subtree
+    ul
+      li one
+      li two
+
+      
+TREES WITH CHECKBOXES ARE LIKE
+
+li text
+
+BY:
+
+li
+  .checkbox
+  |text
+li
+  .checkbox
+  label text
+  ul
+    li...
+
+
+  
+
+
+*/

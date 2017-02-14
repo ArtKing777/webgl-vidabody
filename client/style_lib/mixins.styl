@@ -1,0 +1,104 @@
+
+bg-linear-gradient()
+    background-color unquote('-webkit-linear-gradient('+ join(', ', arguments) +')')
+    background-color unquote('-moz-linear-gradient('+ join(', ', arguments) +')')
+    background-color unquote('-ms-linear-gradient('+ join(', ', arguments) +')')
+    background-color unquote('-o-linear-gradient('+ join(', ', arguments) +')')
+    background-color unquote('linear-gradient('+ join(', ', arguments) +')')
+
+blur()
+    unquote('-webkit-filter: blur(' + arguments + ');')
+    unquote('-moz-filter: blur(' + arguments + ');')
+    unquote('-o-filter: blur(' + arguments+ ');')
+    unquote('-ms-filter: blur(' + arguments + ');')
+    unquote('filter: blur(' + arguments +');')
+
+-transition()
+    -webkit-transition arguments
+    -moz-transition arguments
+    -ms-transition arguments
+    -o-transition arguments
+    transition arguments
+
+-transform()
+    -webkit-transform arguments
+    -moz-transform arguments
+    -ms-transform arguments
+    -o-transform arguments
+    transform arguments
+    
+box-shadow()
+    -webkit-box-shadow arguments
+    -moz-box-shadow arguments
+    box-shadow arguments
+
+    
+r = 3px
+soft-shadow = 0px 0px 20px rgba(0,0,0,0.5)
+hard-shadow = 0px 0px 8px rgba(0,0,0,0.3)
+small-shadow = 0px 0px 4px rgba(0,0,0,0.5)
+inset-soft-shadow = inset 0px 0px 20px rgba(0,0,0,0.5)
+inset-hard-shadow = inset 0px 0px 8px rgba(0,0,0,1)
+text-shadow = 0px 1px 0px rgba(0,0,0, .35), small-shadow
+highlight-color = #71A0C2
+// complimentary colors from http://hex-color.com/code/71a0c2
+highlight-color-green = #A0C271
+highlight-color-red = #C27178
+selected = rgba(255,255,255,0.3)
+contextual-menu-color = rgba(100,100,100,0.9)
+bc = rgba(100,100,100,0.8)
+hbc = lighten(bc, 30%)
+panel-color = rgba(110, 110, 110, 0.72)
+sub-menu-color = rgba(0,0,0,0.2)
+text-input-color = rgba(0,0,0,0.5)
+label-color = white
+soft-text-shadow = 0px 0px 8px black, 2px 2px 1px black
+soft-text-shadow-2 = 0px 0px 8px black, 2px 2px 1px rgba(0,0,0,0.65)
+
+controls-bar-z = 98
+slide-ui-z = controls-bar-z + 1
+slide-ui-2-z = controls-bar-z + 2
+reading-panel-z = controls-bar-z + 3
+reading-panel-lines-z = controls-bar-z + 4
+
+border3d(t, bt = true, bb = true, w = 1px, invert = false)
+    if invert
+        if bt
+            border-top inset rgba(0,0,0,t) w
+        if bb
+            border-bottom inset rgba(255,255,255,t) w
+    else
+        if bt
+            border-top inset rgba(255,255,255,t) w
+        if bb
+            border-bottom inset rgba(0,0,0,t) w
+
+transition-props(duration, props)
+    transition-property props
+    transition-duration duration
+//EXAMPLES:
+//body
+//    transition-props 0.5s (opacity, width)
+//
+//body
+//    transition-props 250ms max-height
+    
+    
+button_style(bcolor = false, hcolor = false, ico = false)
+    if ico
+        background ico 10px center no-repeat
+        if bcolor
+            background-color bcolor
+        background-size 16px
+        padding-left 35px
+        text-align left
+    else
+        if bcolor
+            background-color bcolor
+    &:hover
+        if hcolor
+            background-color hcolor
+        else
+            if bcolor
+                background-color lighten(bcolor, 30%)
+        

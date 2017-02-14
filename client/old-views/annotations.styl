@@ -1,0 +1,80 @@
+
+#annotations
+    & .transformable
+        position absolute
+        width 100px
+        height 100px
+        min-width 10px
+        min-height 10px
+
+        & .border, & .shape_border
+            position absolute
+            width 100%
+            height 100%
+            pointer-events: none
+
+        .shape_border
+            color #fff
+
+        &:hover .border, &.resizing .border
+            border 1px dashed grey
+
+        &.selected .border
+            border 1px dashed black
+
+        & .resize
+            position absolute
+            display none
+            width 13px
+            height 13px
+            background white
+            border 1px solid
+            z-index 1
+            opacity: 0.8
+
+            &:nth-child(1)
+                left -6px
+                top -6px
+                cursor nw-resize
+
+            &:nth-child(2)
+                right -6px
+                top -6px
+                cursor ne-resize
+
+            &:nth-child(3)
+                right -6px
+                bottom -6px
+                cursor se-resize
+
+            &:nth-child(4)
+                left -6px
+                bottom -6px
+                cursor sw-resize
+
+        &:hover .resize, &.selected .resize
+            display block
+
+        &.resizing .resize
+            display none
+
+        & iframe
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+
+    &.viewer
+        transition-props 0.4s (opacity)
+        opacity 0
+
+        & > *
+            transition-props 0.2s (opacity)
+
+        & .border, & .resize
+            display none !important
+
+.transformable-image
+    background-position center
+    background-repeat no-repeat

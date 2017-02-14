@@ -1,0 +1,408 @@
+
+
+// DON'T ADD ANYTHING HERE
+// INSTEAD, MOVE THINGS OUT TO BETTER NAMED FILES
+
+// Eventually, this file should be removed
+
+#splash
+    z-index 2
+    position absolute
+    top 50%
+    left 25%
+    background panel-color
+    height 5px
+    width 50%
+    border-radius r
+    border3d(0.2, true, true, 1px, true)
+    p
+        color panel-color
+        font-weight 500
+        margin-top -30px
+
+#progress
+    border-radius r
+    background lighten(panel-color, 80%)
+    width 0px
+    height 3px
+    max-width 100%
+    
+#canvas_container
+    width 100%
+    height 100%
+    margin 0 auto
+    overflow hidden
+    background-color #808080
+    
+    & > #canvas
+        visibility hidden
+        width 100%
+        height 100%
+        margin 0 auto
+        background #ffffff
+
+    & > .ToolTip
+        position absolute
+        display block !important
+        background #404040 !important
+        border 1px solid white
+        border-radius 6px
+        color white
+        padding 3px 9px
+        font-size small
+        white-space nowrap
+        z-index 20000000
+        pointer-events none
+
+    & > .ToolTip > div
+        position absolute
+        width 0
+        height 0
+
+    & > .ToolTip > div.dn
+        bottom -7px
+        border-left 7px solid transparent
+        border-right 7px solid transparent
+        border-top 7px solid white
+
+    & > .ToolTip > div.up
+        top -7px
+        border-left 7px solid transparent
+        border-right 7px solid transparent
+        border-bottom 7px solid white
+
+    & > .ToolTip > div.lt
+        left -7px
+        top 4px
+        border-top 7px solid transparent
+        border-bottom 7px solid transparent
+        border-right 7px solid white
+
+    & > .ToolTip > div.rt
+        right -7px
+        top 4px
+        border-top 7px solid transparent
+        border-bottom 7px solid transparent
+        border-left 7px solid white
+
+    & > .ToolTip > div > div
+        position absolute
+        width 0
+        height 0
+
+    & > .ToolTip > div.dn > div
+        left -5px
+        top -7px
+        border-left 5px solid transparent
+        border-right 5px solid transparent
+        border-top 5px solid #404040
+
+    & > .ToolTip > div.up > div
+        left -5px
+        bottom -7px
+        border-left 5px solid transparent
+        border-right 5px solid transparent
+        border-bottom 5px solid #404040
+
+    & > .ToolTip > div.lt > div
+        left 2px
+        top -5px
+        border-top 5px solid transparent
+        border-bottom 5px solid transparent
+        border-right 5px solid #404040
+
+    & > .ToolTip > div.rt > div
+        right 2px
+        top -5px
+        border-top 5px solid transparent
+        border-bottom 5px solid transparent
+        border-left 5px solid #404040
+
+
+#debug
+    display none
+    position absolute
+    top 10px
+    left 10px
+    width 400px
+    height 150px
+    overflow auto
+    background white
+
+#fps
+    position absolute
+    top 5px
+    right 5px
+    width 40px
+    height 20px
+    overflow hidden
+    color white
+    font-size 8px
+
+#app
+    position absolute
+    top 0
+    left 0
+    margin 0 auto
+    width 100%
+    height 425px + 146px
+    -moz-user-select none
+    -webkit-user-select none
+    -ms-user-select none
+    user-select none
+    cursor default
+    background #ffffff
+    transition-props 1s height
+
+    &.annotation_line_hint
+        cursor url(annotation_line_hint.png) 63 55, auto
+
+
+body.hidestuff > *:not(.cke)
+    display none
+    background #ffffff
+
+
+body.hidestuff > #app
+    position fixed
+
+body.maximized_app #app
+    top 0
+    display block
+    width 100%
+    height 100%
+
+body.maximized_app #main-header
+    top -150px !important
+    transition-props 1s top
+
+.text-input
+    background rgba(0,0,0,0.3)
+    width 100% height 30px
+    border none
+    color #ffffff
+    font-size 16px
+    margin 0
+    padding-left 30px
+
+.logo
+    width 250px
+    height 100px
+    position absolute
+    top 0
+    margin 0 0 0 20px
+    z-index 3
+
+    & img
+        opacity 1
+        pointer-events all
+        width 250px
+        height 100px
+        
+
+
+
+        
+    
+
+
+.panel-button
+    border none
+    color white
+    font-size: 15px
+    border-radius r
+    box-shadow soft-shadow
+    border3d 0.3
+    cursor pointer
+    pointer-events all
+    text-align center
+    padding 8px
+    background-color bc
+    
+    &:hover
+        background-color hbc
+
+
+.only_admin.disabled
+    display none
+        
+#lcs
+    position absolute
+    height 24px
+
+    bottom 10px
+    right 60px
+    //margin-left @width*-0.5
+    z-index 10000000
+    input
+        padding 0
+        margin 0
+        float left
+        padding 0 4px
+        height 20px
+    #tempsnapshot
+        padding-left 24px
+        background url(temp_snapshot.png) 4px center no-repeat
+        background-color hbc
+        background-size 16px
+    
+    *.hidden
+        opacity 0
+        pointer-events none
+
+    #standard_views_button
+        padding 0
+        margin 0
+        float left
+        padding 0 4px
+        height 20px
+
+        background url(transition_ico.png) 5px center no-repeat
+        background-size 24px // 32px
+        background-color bc
+        padding-left 30 px // 40px
+        //padding-top 10px
+        text-align left
+
+.landing #lcs
+    display: none
+        
+#oscc_toggle
+    z-index 10000000
+    position absolute
+    width 24px
+    height 24px
+    background url(pan2.png) center no-repeat
+    background-color hbc
+    background-size 20px
+    bottom 10px
+    right 440px
+
+.landing #oscc_toggle
+    display: none
+
+#oscc_toggle.viewer
+    top 200px
+    right 20px
+    
+    &.old_pos
+        top auto
+        right 60px
+        
+
+#aspect_advice
+    position absolute
+    color white
+    background rgb(139, 78, 78)
+    z-index 10000000
+    bottom 5%
+    left: 50%
+    margin-left -300px
+    width 600px
+    max-width 100%
+    padding 20px
+    border-radius 4px
+    box-shadow soft-shadow
+    input
+        display block
+        margin 10px 0 0 auto
+        padding 0 4px
+    img
+        margin-right 20px
+
+.landing #aspect_advice
+    display: none
+
+#debug_gui
+    position absolute
+    top 0
+    //margin 0 -123px
+    right 30px
+    padding-bottom 20px
+    z-index 10000
+
+    & .close-button
+        height 0
+        transition-props 0.2s height
+        overflow hidden
+
+
+    &:hover .close-button
+        height 20px
+    
+    *
+        box-sizing content-box
+        -box-sizing content-box
+    
+
+#saving-popup
+    position absolute
+    top 100px
+    left 50%
+    padding 10px
+    width 300px
+    margin-left -150px
+    background-color highlight-color-green
+    border-radius r * 2
+    font-family: 'Roboto', 'sans-serif'
+    box-shadow soft-shadow
+    text-shadow text-shadow
+    color white
+    display none
+
+    &.red
+        background-color highlight-color-red
+
+#warning-popup
+    position absolute
+    top 300px
+    left 50%
+    padding 10px
+    width 300px
+    margin-left -150px
+    background-color highlight-color
+    border-radius r * 2
+    font-family: 'Roboto', 'sans-serif'
+    box-shadow soft-shadow
+    text-shadow text-shadow
+    color white
+    display none
+    z-index slide-ui-2-z
+
+#snapshot-popup
+    position absolute
+    top 150px
+    left 50%
+    padding 10px
+    width 190px
+    margin-left -95px
+    background-color #b3b3b3
+    border-radius r * 2
+    font-family: 'Roboto', 'sans-serif'
+    box-shadow soft-shadow
+    text-shadow text-shadow
+    color white
+    display none
+    z-index slide-ui-2-z
+
+    & input[type='checkbox']
+        margin-right 6px
+
+    & input[type='button']
+        cursor pointer
+
+
+#lines, #lines2
+    position absolute
+    top 0
+    left 0
+    pointer-events none
+
+#lines2
+    z-index reading-panel-lines-z
+
+
+// DON'T ADD ANYTHING HERE
+// INSTEAD, MOVE THINGS OUT TO BETTER NAMED FILES
+
+// Eventually, this file should be removed

@@ -1,0 +1,505 @@
+
+.no-events, .read-only
+    pointer-events none !important
+
+.have-events
+    pointer-events all !important
+
+.no-transition
+    -transition none !important
+
+.fade-in-start
+    opacity 0
+    transition-props 0.2s (opacity)
+
+.fade-in-end
+    opacity 1
+
+#tour-name.editing
+    top auto
+    left 50%
+    bottom 40px
+    display block
+    font-size 2vh
+
+#editor-toolbar
+    position absolute
+    top 0
+    transition-props 0.5s (top opacity)
+    left 0
+    width 100%
+    text-align center
+    border-radius 0 0 10px 10px
+    //box-shadow 0px 0px 60px rgba(0,0,0,0.5)
+    z-index 1000
+    //blur(2px)
+    background-size 100% 100%
+    color rgba(255,255,255,0.5)
+    text-shadow text-shadow
+    font-size 20px
+    opacity 1
+
+    & > div
+        display inline-block
+        min-width 500px
+        padding 5px 50px 10px 50px
+
+    
+    &.hidden
+        top -148px
+        opacity 0
+        pointer-events none
+    
+    & .panel-button
+        display inline-block
+        color white
+        text-shadow text-shadow
+        background url(transition_ico.png) 5px center no-repeat
+        background-size 32px
+        padding-left 40px
+        padding-top 10px
+        text-align left
+        border none
+        height 40px
+        border-radius r
+        background-color transparent
+        box-shadow 0px 0px 0px rgba(0,0,0,0)
+        font-size 12px
+        // This is replaced by 1px border in border3d
+        border-top 1px solid rgba(0,0,0,0)
+        
+        &:after
+            // this is absurdly needed so the buttons are aligned vertically
+            content "\200b"
+
+        &:hover
+            background-color lighten(panel-color, 50%)
+            box-shadow soft-shadow
+            border3d 0.5
+        
+        &.active
+            background-color panel-color
+            box-shadow hard-shadow
+            border3d 0.5
+            &:hover
+                background-color lighten(panel-color, 50%)
+                box-shadow hard-shadow
+                border3d 0.5
+        &.disabled
+            opacity 0.2
+            pointer-events none
+        *
+            pointer-events none
+        &.no_icon
+            padding-left 10px
+
+.offscreen
+    position absolute
+    left -999px
+    top -999px
+
+#slide-prototype
+    display none
+    
+#slide-editor
+    position absolute
+    display none
+    width 100%
+    height 8%
+    bottom 6%
+    left 45%
+    transition-props 0.4s left
+    z-index 96
+
+    & *
+        -moz-user-select none
+        -webkit-user-select none
+        -ms-user-select none
+        user-select none
+
+    & .slide
+        position absolute
+        //border-radius 8px
+        display inline-block
+        //box-shadow 0px 0px 8px #000
+
+        width 7.1%
+        margin-right: -0.1% // for avoiding seams while moving
+        height 100% /* of height of slide editor */
+        //margin-left -2px
+        background rgb(95%, 95%, 95%)
+        overflow hidden
+        //-transition all 0.4s ease 0s
+        transition-props 0.4s (top left)
+        //box-shadow 0px 0px 8px #000
+        border-right 2px solid grey
+        border-left 2px solid grey
+
+        &.selected
+            width 9%
+            height 128.6% // 10.285% / parent height (8%)
+            margin -0.5% 0 0 -1%
+            border 4px solid #6fa1da
+            //border-top 30px solid #6fa1da
+            box-shadow 0px 0px 8px #000
+            z-index 1
+            
+            &.dragging
+                border-top 4px solid #6fa1da
+            
+        &.dragging
+            -transform rotate(10deg)
+            -transition transform 0.4s !important
+            opacity 1 !important
+            z-index 100000
+        
+        /*&:after
+            content: "AAAAAAAAAAA"
+            display block
+            position absolute
+            top 0
+            left 0
+            width 50%
+            height 100%
+            background blue
+            z-index 0*/
+
+        & .speaker
+            position absolute
+            width 32px
+            height 32px
+            right 0px
+            bottom 0px
+            cursor grab
+            cursor -webkit-grab
+
+            &.hidden
+                display none
+
+        
+    & .slidethumb
+        pointer-events none
+        position absolute
+        top 0
+        left 50%
+        width 100%
+        height 100%
+
+    & .slide span /* slide number */
+        position absolute
+        top 2px
+        left 2px
+        margin-right -6px
+        min-width 15px
+        width auto
+        height 15px
+        background #555
+        color #fff
+        border-radius 10px
+        font-size 11px
+        font-family sans-serif
+        text-align center
+        padding-top 1px
+
+    & .newslide
+        position absolute
+        display inline-block
+        cursor pointer
+        width 2%
+        height 50%
+        bottom 90%
+        opacity 0
+
+        z-index 2
+
+        &:hover, &.slidehover
+            opacity 1
+
+        &.newright
+            margin 0.7% 1%
+
+        &.newleft
+            margin 0.7% -1%
+
+.speaker-dragged
+    position absolute
+    cursor grabbing
+    cursor -webkit-grabbing
+    width 32px
+    height 32px
+    pointer-events none
+    z-index 1000000
+
+.editable-element
+    position absolute
+    top 10px
+    left 200px
+    width 100px
+    color rgba(47, 131, 199, 0.72)
+    text-shadow text-shadow
+    //border 1px solid blue
+    
+    & [contentEditable]
+        overflow hidden
+        color white
+        min-height 32px
+        padding 1.5vh
+        
+        &.shadow
+            box-shadow 0px 0px 20px rgba(0,0,0,0.5)
+        
+    & .resize
+        position absolute
+        user-select none
+        opacity 0
+
+    & .resize
+        width 10px
+        height 100%
+        background url(resize_icon.svg) center no-repeat
+        top 0
+        right -10px
+        cursor col-resize
+
+    & .delete
+        width 20px
+        height 20px
+        background url(old_icons/trash.png) no-repeat
+        top 4px
+        right -20px
+        cursor pointer
+
+    & .bottom-bar
+        position absolute
+        width 280px
+        left -webkit-calc(50% - 160px)
+        left calc(50% - 160px)
+        position absolute
+        pointer-events all
+        margin-top 10px
+        
+        & input[type='color']
+            width 33px
+            height 22px
+
+        & input[type='range']
+            display inline-block
+            width 60px
+            height 22px
+            vertical-align bottom
+
+        & .button
+            display inline-block
+            width 22px
+            height 22px
+            font-size 14px
+            text-align center
+            padding-top 2px
+            cursor pointer
+
+            &.pressed
+                color white
+                background rgba(47, 131, 199, 0.72)
+                border-radius 11px
+        
+        
+        
+    &:hover .resize
+        display block
+        opacity 1
+
+    &.moving .resize
+        opacity 0
+
+
+#reading-panel-editor .sub-menu
+    height 100%
+    overflow-x none
+    overflow-y auto
+    
+#reading-panel-content-editable
+    min-height 100%
+    padding 10px
+
+#edit-box-toggle, #slide-ui-toggle
+    opacity 1
+    pointer-events all
+    box-shadow soft-shadow
+    position absolute
+    width 30px
+    height 20px
+    background panel-color
+    margin @height*-0.5 @width*-0.5
+    left 50%
+    text-align center
+    z-index slide-ui-z
+    border3d(0.5)
+    color white
+    cursor pointer
+    border-radius r
+    transition-props 0.2s (height width margin opacity)
+        
+    &:after
+        padding-bottom 10px
+        font-size 20px
+    &:hover
+        width 50px
+        height 30px
+        margin @height*-0.5 @width*-0.5
+        
+    &.hidden
+        pointer-events none
+        height 0
+        margin 0
+        opacity 0
+
+#edit-box-toggle
+    bottom 16%
+
+#slide-ui-toggle
+    bottom 3%
+
+#slide-ui-toggle:after
+    content "\25BC"
+    font-size 14px
+
+#slide-ui-toggle.up:after
+    content "\25B2"
+
+#edit-box
+    font-size 12px
+    border-radius r
+    border3d(0.5)
+    box-shadow soft-shadow
+    color white
+    text-shadow text-shadow
+    overflow hidden
+    position absolute
+    width auto
+    height 400px
+    background panel-color
+    left -webkit-calc(50% - 100px)
+    bottom -webkit-calc(16% + 20px)
+    left calc(50% - 100px)
+    bottom calc(16% + 20px)
+    //text-align center
+    z-index slide-ui-z
+    height 0px
+    opacity 0
+    transition-props 0.2s (height width opacity)
+
+    &.visible
+        height 500px
+        width auto
+        opacity 1
+        left -webkit-calc(50% - 150px)
+        left calc(50% - 150px)
+        
+    & input
+        margin 0 10px 10px 10px
+        &::-webkit-file-upload-button
+            border none
+            color white
+            font-size: 12px
+            border-radius r
+            box-shadow hard-shadow
+            border3d 0.3
+            cursor pointer
+            pointer-events all
+            text-align center
+            background-color bc
+            height 20px
+            margin-top 10px
+    
+    .panel-button
+        height 20px
+        box-shadow hard-shadow
+        margin 10px
+        font-size: 12px
+        padding 0px 10px 0 10px
+        
+        
+    & .text-input
+        width 40%
+        border-radius r
+        border3d(0.3, true, true, 1px, true)
+        //display block
+        height 25px
+        color white
+        background text-input-color
+        //width (100% - 10px)
+        font-size 12px
+    
+    .file-input
+        width -webkit-calc(100% - 20px)
+        width calc(100% - 20px)
+        height 80px
+        margin 10px
+        border-radius r
+        border3d(0.3, true, true, 1px, true)
+        background sub-menu-color
+    
+    
+        
+    .center
+        text-align center
+    
+.file-input
+    border-radius r
+    border3d(0.3, true, true, 1px, true)
+    background sub-menu-color
+    min-height 30px
+    min-width 200px
+    
+    .panel-button
+        position absolute
+        height 20px
+        box-shadow hard-shadow
+        margin 10px
+        font-size: 12px
+        padding 0px 10px 0 10px
+        right 10px
+        
+    input::-webkit-file-upload-button
+        border none
+        color white
+        font-size: 12px
+        border-radius r
+        box-shadow hard-shadow
+        border3d 0.3
+        cursor pointer
+        pointer-events all
+        text-align center
+        background-color bc
+        min-height 20px
+        
+    .audio-props
+        margin 10px
+        width -webkit-calc(100% - 50px)
+        width calc(100% - 50px)
+        color white
+        margin-right 40px
+
+        
+        .data
+            color rgba(255,255,255,0.5)
+    
+
+    
+#audio-recorder
+    display none
+    position absolute
+    top 50%
+    left 50%
+    margin -52px 0 0 -65px
+    width 130px
+    height 105px !important
+    background grey
+    z-index 100
+    
+    & > #analyser
+        //width 128px
+        height 64px
+        //border 1px solid
+    //& > #record
+        

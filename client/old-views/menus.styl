@@ -1,0 +1,291 @@
+@media screen and (min-width: 1600px)
+    #main_menu .panel-button
+        font-size 14px
+    #main_menu .heading
+        font-size 17px
+
+        
+@media screen and (max-width: 1600px)
+    #main_menu .panel-button
+        font-size 10px
+    #main_menu .heading
+        font-size 15px
+    #menu_logo
+        background-size 80% !important
+
+
+@media screen and (max-height: 700px)
+    #main_menu .heading
+        font-size 15px
+    #menu_logo
+        background-size 80% !important
+
+#main_menu
+    z-index 97
+    pointer-events none
+    height 50px
+    position fixed
+    text-align center
+    top 0px
+    left 0x
+    color #ffffff
+    text-shadow text-shadow
+    width 16%
+    height auto
+    min-width 220px
+    max-width 350px
+    background transparent
+    padding-bottom 10px
+    margin-left 20px
+
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+    
+    > .accordion
+        border-radius r
+        padding 5px
+        display inblock
+        width 170px
+        margin 0 auto
+        background transparent
+        &.expanded
+            opacity 1
+            width 100%
+            border3d(0.5)
+            box-shadow soft-shadow
+            background panel-color
+            &.semihidden
+                //opacity 0.5
+                opacity 1
+        &.hidden
+            opacity 0
+            
+    
+    .accordion > li
+        border none
+        background-color transparent
+        .heading
+            button_style(transparent, hbc, url(explore_ico.svg))
+            box-shadow none
+            background-size 20px
+            padding-left 40px
+            border none
+            border-radius r
+        
+        #tutorial-balloon
+            opacity 0
+            pointer-events none
+            
+        &.expanded
+            > .sub-menu
+                min-height 100px
+                background sub-menu-color
+                box-shadow inset-soft-shadow
+                border3d(0.3, true, true, 1px, true)
+                border-radius r
+            
+            #tutorial-balloon
+                opacity 1
+                pointer-events all
+
+    #exit_tour
+        display none
+
+    .semihidden2 #exit_tour
+        display block
+
+    #exit_tour .heading
+        button_style(transparent, hbc, url(back.gif))
+        box-shadow none
+        background-size 25px
+        border none
+        border-radius r
+            
+    #systems .heading
+        button_style(transparent, hbc, url(systems.png))
+        box-shadow none
+        background-size 25px
+        border none
+        border-radius r
+        
+    #tours .heading
+        button_style(transparent, hbc, url(tours.png))
+        box-shadow none
+        background-size 25px
+        border none
+        border-radius r
+
+    .semihidden2.expanded
+        padding-left 5px
+        margin-left 0
+        transition-props 0.2s (padding-left margin-left)
+
+    .semihidden2:not(.expanded)
+        padding-left 0
+        margin-left -15px
+        transition-props 0.2s (padding-left margin-left)
+
+        .heading
+            width 0
+            overflow hidden
+            white-space nowrap
+            color transparent
+            text-shadow none
+    
+    #search #tutorial-balloon
+        opacity 1
+        pointer-events all
+        
+    #menu_logo
+        background url('logo_white_low_res.png') 10px no-repeat
+        background-size 200px
+        width 210px
+        min-width 50%
+        margin-left -30px
+        margin-top -15px
+        height 90px !important
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        // pointer-events all
+        // cursor pointer
+    
+    .save_or_exit_button, .exit_tour_button
+        transition-props 0.5s (height background margin box-shadow)
+        pointer-events all !important
+        padding 2px
+        overflow hidden
+        height 30px
+        border inset transparent 1px
+        margin 10px auto 5px auto
+        border-radius r
+        width 200px
+        cursor pointer
+        
+        &:hover
+            transition-props 0.1s (height background margin box-shadow)
+            border3d(0.5)
+            box-shadow soft-shadow
+            background panel-color
+        &.hidden
+            height 0
+            padding 0
+            margin 0 auto
+            background transparent
+            border inset transparent 1px
+            box-shadow 0 0 0 transparent
+    
+        &.landing
+            display: none
+
+
+    .exit_tour_button
+        width 120px
+        margin-left 20px !important
+        position absolute
+        top -webkit-calc( 100vh - 90px )
+        top calc( 100vh - 90px )
+        
+        &.old_pos
+            position relative
+            top 0
+        
+        &.landing
+            border3d(0.5)
+            box-shadow soft-shadow
+            background panel-color
+            width 250px
+            height 60px
+            font-size 20px
+            /* vertical-align middle   /* wtf it doesn't work */
+            padding-top: 17px;
+            position relative
+            top 50px
+            
+        &.landing:hover
+            background #71a0c2
+    
+    #history_tools
+        width 150px
+        height 32px
+        margin -10px auto 20px auto
+        transition-props 0.5s (height margin)
+        overflow hidden
+        &.hidden
+            height 0
+            padding 0
+            margin 0 auto
+            background transparent
+            border inset transparent 0px
+            box-shadow 0 0 0 transparent
+            
+        .button
+            position absolute
+            width 40px
+            height 32px
+            pointer-events all
+            cursor pointer
+            transition-props 0.5s (height margin)
+
+            &.hidden
+                height 0
+                padding 0
+                margin 0 auto
+                background transparent
+                border inset transparent 0px
+                box-shadow 0 0 0 transparent
+            
+        #undo
+            background url(undo_ico.png)  center no-repeat
+            background-size 32px
+            background-color transparent
+            left 50px
+        #redo
+            background url(redo_ico.png)  center no-repeat
+            background-size 32px
+            background-color transparent
+
+            right 50px
+            
+        .button:hover
+            border3d(0.5)
+            box-shadow soft-shadow
+            background-color panel-color
+        
+        
+
+    
+#tours
+    transition-props 0.5s (height)
+    &.hidden
+        height 0
+        pointer-events none
+        overflow hidden
+.search-box
+    display block
+    height auto
+    min-height 30px
+    width 100%
+    border none
+    color #999999
+    font-size 16px
+    padding-left 30px
+    box-shadow inset-soft-shadow
+    inversed-border3d(0.5, true, false, 1px) !important
+    padding-top 10px
+    font-size 25px
+    bottom 0
+    transition-props 0.5s (margin background)
+    cursor text
+    &::after
+        content "search..."
+    
+    &.searching
+        color #ffffff
+        background-color sub-menu-color
+        margin-bottom 5px
+        &::after
+            content ""
+        

@@ -1,0 +1,128 @@
+
+=== COMPLETE DEPLOYMENT INSTRUCTIONS ===
+
+The included configuration files has the following assumptions:
+
+    * Client files are located at /data/
+    * Server and asset files are located at /data1/
+    * SSL certificate is /etc/nginx/ssl/vidabody_pearsoncmg_com.crt
+    * SSL key is /etc/nginx/ssl/vidabody.pearsoncmg.com.key
+    * IP of node.js server is 10.76.72.39 in prod and 10.76.72.7 in perf
+    
+    If any of this changes, let us know, and/or replace it automatically in
+    nginx.conf in deployment scripts.
+
+- Install the following software in the client machine(s):
+
+    nginx
+
+- Install the following software in the server machine(s):
+
+    node.js >=0.12 (includes npm, instructions at the bottom)
+    forever.js (by typing "npm install -g forever")
+
+- Configure nginx:
+
+    - Edit the server's default config file (in debian it's /etc/nginx/nginx.conf)
+    - Set user to root
+    - Add this line inside the http { } block:
+    
+         include /data1/vidabody-server/nginx.conf;
+
+ - Install and configure the server:
+ 
+    - Install it
+    
+        cd /data1/
+        wget vidabody-server-latest.tar.gz
+        tar zxvf vidabody-server-latest.tar.gz --no-same-owner
+        cd vidabody-server
+        npm install
+        cp settings-dev.coffee settings-prod.coffee
+    
+    - Change the following settings in settings-prod.coffee:
+    
+        dev_server: false
+        max_file_size_mb: 1000
+        db_backend: 'mysql'
+        db_user: 'your mysql user name goes here'
+        db_pass: 'your mysql password goes here'
+        db_name: 'your mysql database name goes here'
+        db_host: 'your mysql host name or IP goes here'
+        assetver_path: '/data1/assetver/'
+
+    - Ensure the db_* options above are correct. See appendix for instructions
+      to create database, user and grant privileges.
+    - Add this to /etc/rc.local before "exit 0":
+    
+        cd /data1/vidabody-server/
+        forever start -l forever.log -o output.log -e error.log -a run-server.js
+    
+    - Run it
+    
+        sh /etc/rc.local
+
+- Check that the server works:
+
+    This url should show "Server ready": https://vidabody.pearsoncmg.com/server/
+    Otherwise, see vidabody-server/error.log for details.
+    To restart a server that failed, do this:
+    
+        forever stopall;sh /etc/rc.local
+
+- Updating the server:
+
+    cd /data1/
+    wget vidabody-server-xxx.tar.gz
+    tar zxvf vidabody-server-xxx.tar.gz --no-same-owner
+    cd vidabody-server
+    npm install
+    forever stopall
+    sh /etc/rc.local
+
+- Installing or updating the client:
+
+    cd /data/
+    wget vidabody-client-xxx.tar.gz
+    tar zxvf vidabody-client-xxx.tar.gz --no-same-owner
+    ln -nsf vidabody-client-xxx vidabody-client-latest
+
+- Installing assets:
+
+    This operation is required only once. They will be updated by an app admin
+    from the web interface. In the future this may be unnecessary.
+    
+        cd /data1
+        mkdir assetver
+        cd assetver
+        wget vidabody-assets-21.tar.gz
+        tar zxvf vidabody-assets-21.tar.gz --no-same-owner
+        rm vidabody-assets-21.tar.gz
+        
+    Make sure the assetver directory can be written to by the node server.
+
+=== APPENDIX ===
+
+- Installing/updating node.js on Linux:
+
+    - Uninstall distro-provided nodejs if present
+    - Download latest binaries from nodejs.org (assuming v0.12.7 x64)
+    - tar zxvf node-v0.12.7-linux-x64.tar.gz --no-same-owner
+    - cd node-v0.12.7-linux-x64/
+    - cp bin include lib share /usr/ -r
+    - cd .. && rm -r node-v*  # optional
+    
+- Creating database user, database and grating privileges to the user:
+
+    mysql -u root
+    (or if a password is required)
+    mysql -u root -p
+    
+    mysql> create user vidabody;
+    mysql> create database vidabody_db;
+    mysql> grant usage on *.* to vidabody@'%' identified by 's7JE4Yu7wqDb';
+    -- s7JE4Yu7wqDb is the password and it's an example
+    -- it's recommended to set a different one
+    mysql> grant all privileges on vidabody_db.* to vidabody@'%';
+    
+    (should say "Query OK, X rows affected" to each command)
